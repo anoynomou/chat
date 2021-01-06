@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Document</title>
+
+
+
+    <script src="socket.io/socket.io.js"></script>
+     
+    <script defer>
+
+    var socket = io.connect('http://localhost:3000');
+
+/*
+
+*/
+var Time = new Date().toLocaleTimeString()
+socket.on("you",(data)=>{
+var e1 =document.createElement("div");
+var e2 =document.createElement("b");
+var e3 = document.createElement("p");
+var e4 = document.createElement("hr");
+var e5 = document.createElement("h6");
+e1.style.backgroundColor = "rgba(34,139,34,.5)";e1.style.padding = "6px";e1.style.borderRadius = "10px";
+e1.style.maxWidth = "140px";
+
+
+e2.innerText = data
+e3.innerText = Time
+e1.appendChild(e3)
+e1.appendChild(e2)
+e1.appendChild(e4)
+e5.innerText = " YOU JOIN THA CHAT";
+e5.style.textAlign ="center";
+e5.style.justifyContent ="space-around";
+e1.appendChild(e5);
+e1.style.marginTop="10px"
+e1.style.marginLeft="auto"
+var a2 = document.getElementById('msg63');a2.appendChild(e1);
+updateScroll()
+
+
+
+})
+
+socket.on("player",(data)=>{
+
+
+var e1 =document.createElement("div");
+var e2 =document.createElement("b");
+var e3 = document.createElement("p");
+var e4 = document.createElement("hr");
+var e5 = document.createElement("h6");
+e1.style.backgroundColor = "rgba(34,139,34,.5)";e1.style.padding = "6px";e1.style.borderRadius = "10px";
+e1.style.maxWidth = "140px";
+
+
+e2.innerText = data
+e3.innerText = Time
+e1.appendChild(e3)
+e1.appendChild(e2)
+e1.appendChild(e4)
+e5.innerText = data + " JOIN THA CHAT";
+e5.style.textAlign ="center";
+e5.style.justifyContent ="space-around";
+e1.appendChild(e5);
+e1.style.marginTop="10px"
+e1.style.marginRight="auto"
+var a2 = document.getElementById('msg63');a2.appendChild(e1);
+updateScroll()
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+a1.innerHTML =val;var a2 = document.getElementById('msg63');a2.appendChild(a1);
+*/
+
+function updateScroll(){
+    var element = document.getElementById("msg63");
+    element.scrollTop = element.scrollHeight;
+}
+
+
+
+  socket.on('msg',(val)=>{
+var e1 =document.createElement("div");
+var e2 =document.createElement("b");
+var e3 = document.createElement("p");
+var e4 = document.createElement("hr");
+var e5 = document.createElement("h6");
+e1.style.backgroundColor = "bisque";e1.style.padding = "6px";e1.style.borderRadius = "10px";
+e1.style.maxWidth = "140px";
+
+
+e2.innerText = val.name
+e3.innerText = val.time
+e1.appendChild(e3)
+e1.appendChild(e2)
+e1.appendChild(e4)
+e5.innerText = val.data;
+e5.style.textAlign ="center";
+e5.style.justifyContent ="space-around";
+e1.appendChild(e5);
+e1.style.marginTop="10px"
+e1.style.marginRight="auto"
+var a2 = document.getElementById('msg63');a2.appendChild(e1);
+updateScroll()
+  });
+
+    </script>
+
+    <style>
+
+#j84{margin: auto;padding: 10px;margin-top: 10px;}
+#ul3{background-color: rgba(0, 0, 0,.5);}
+#l8{background-color: rgba(240, 238, 238, 0.5);font-size: large;}
+body{background-color: rgba(0, 0, 0,.5);}
+#aa45{background-color: rgba(231, 64, 64, 0.7);color: seashell;}
+
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <h3 class="navbar-brand" id="op"></h3>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/" id="aa45">LEAVE</a>
+      </li>
+      <li class="nav-item dropdown">
+        </div>
+    </ul>
+     <ul style="margin-right: 5%;">
+      <li class="nav-item">
+       <h5>TOTAL<b id="total">0</b></h5>
+      </li>
+     </ul>
+  </div>
+</nav>
+<!--nav-->
+</div>
+<!-- Page content -->
+<div class="main">
+</div>
+
+<div class="card" style="width: 40rem;height: 30rem;" id="j84">
+  <div class="card-body">
+    <h5 class="card-title">Chat Room</h5>
+
+  <div class="form-group">
+
+    <div style="width: 100%;height: 220px;margin: auto;background-color: rgba(60, 177, 177,.5);border-radius: 5px;overflow: auto;padding: 15px;display: flex;flex-direction: column;" id="msg63" class="massagel">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <div class="input-group input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-lg" style="margin-top: 5px;">Message</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" id="g11" style="margin-top: 5px;">
+</div>
+
+
+
+
+  </div>
+   <button type="button" class="btn btn-dark" id="btn" onclick="send()"> SEND</button>
+  </div>
+</div>
+    <script>
+   var uib = ''
+    new URLSearchParams(window.location.search).forEach((scl,name)=>{document.getElementById("op").innerHTML += scl;uib += scl});
+   </script>
+
+
+<script>
+socket.emit("join",uib)
+var online = document.getElementById("total")
+socket.on("online",(data)=>{
+online.innerHTML = data
+})
+    function send(){
+    var t =document.getElementById('g11').value;
+    socket.emit("msg",{name:uib,data:t,time:Time})
+    var s11 =document.getElementById('g11');
+
+var e1 =document.createElement("div");
+var e2 =document.createElement("b");
+var e3 = document.createElement("p");
+var e4 = document.createElement("hr");
+var e5 = document.createElement("h6");
+e1.style.backgroundColor = "bisque";e1.style.padding = "6px";e1.style.borderRadius = "10px";
+e1.style.maxWidth = "140px";
+
+
+e2.innerText = uib
+e3.innerText = Time
+e1.appendChild(e3)
+e1.appendChild(e2)
+e1.appendChild(e4)
+e5.innerText = s11.value;
+e5.style.textAlign ="center";
+e5.style.justifyContent ="space-around";
+e1.appendChild(e5);
+e1.style.marginTop="10px"
+e1.style.marginLeft="auto"
+var a2 = document.getElementById('msg63');a2.appendChild(e1);
+
+
+    s11.value = '';
+
+
+
+
+
+
+    updateScroll();
+}
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
