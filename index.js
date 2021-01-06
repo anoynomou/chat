@@ -1,7 +1,8 @@
 
 
 var app = require('express')();
-var Http = require('http').Server(app).listen(3000);
+var port = process.env.PORT || 3000;
+var Http = require('http').Server(app).listen(port);
 var io = require('socket.io')(Http);
 var player = 0
 app.get('/',(req,res)=>{
@@ -13,7 +14,6 @@ io.on("connection",(socket)=>{
   player = player + 1
   socket.on("join",(nam)=>{socket.broadcast.emit("player",nam);socket.emit("you",nam)})
   io.emit("online",player)
-  console.log("connect :" + socket.id)
  socket.on("msg",(data)=>{socket.broadcast.emit("msg",data)})
 socket.on('disconnect',()=>{player = player - 1;io.emit("online",player)})
 })
