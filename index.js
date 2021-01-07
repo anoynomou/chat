@@ -1,7 +1,7 @@
 
 
 var app = require('express')();
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 443;
 var Http = require('http').Server(app).listen(port);
 var io = require('socket.io')(Http);
 var player = 0
